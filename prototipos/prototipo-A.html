@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>CaféU · Mi pedido ( boceto A )</title>
+<style>
+  body { margin: 0; width: 960px; font: 18px/1.4 Arial, sans-serif; color: #222; background: #f4efe9; }
+  .cab { background: #6b3f24; color: #fff; padding: 14px 24px; font-weight: bold; }
+  .grid { display: grid; grid-template-columns: 580px 360px; gap: 20px; padding: 24px; }
+  .caja { background: #fff; border: 1px solid #d8cfc6; padding: 20px; }
+  .btn { background: #6b3f24; color: #fff; border: 0; padding: 10px 18px; font-size: 16px; }
+</style>
+</head>
+<body>
+  <div class="cab">CaféU — Retiro en Edificio central</div>
+  <div class="grid">
+    <div class="caja">
+      <h2>Mi pedido</h2>
+      <p>1 × Café Americano (12 oz) — $1.50</p>
+      <p>1 × Sánduche de jamón y queso — $2.75</p>
+      <p><strong>Total: $4.25</strong> · Tarjeta universitaria (saldo $10.00)</p>
+      <button class="btn" disabled>Confirmar y pagar</button>
+    </div>
+    <div class="caja">
+      <h3>Estado del pedido</h3>
+      <p>Pendiente de confirmación (columna fija en x = 600 px).</p>
+    </div>
+  </div>
+</body>
+</html>

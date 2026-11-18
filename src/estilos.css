@@ -1,0 +1,376 @@
+/**
+ * APE 6 · CaféU · «Mi pedido» + Catálogo rápido con buscador/filtros (Mobile-First)
+ * Responsable: Melany Saleth Cevallos Goyes (@SalyC15) · Desarrollador Front-End
+ *
+ * 1. Base de 1 columna para móviles (320 y 360 px).
+ * 2. Dos columnas desde @media (min-width: 48rem) (768 px), sin alterar el orden del DOM.
+ * 3. Incluye módulo de búsqueda y filtrado para la Tarea de Refuerzo T3 (Ajuste Post-Pilotaje).
+ */
+
+:root {
+  --texto: #1F1A17;
+  --texto-sec: #6B625C;
+  --fondo: #FAF7F3;
+  --superficie: #FFFFFF;
+  --borde: #E3DAD2;
+  --primario: #6B3F24;
+  --primario-presionado: #4E2D19;
+  --primario-suave: #F3E7DC;
+  --exito: #2E7D4F;
+  --exito-suave: #E6F4EC;
+  --aviso: #8A4B00;
+  --aviso-suave: #FFF3E0;
+  --error: #B3261E;
+  --error-suave: #FCEEEE;
+  --deshab: #E2DCD6;
+  --texto-deshab: #5E5650;
+  --foco: #1F1A17;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font: 1rem/1.6 "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+/* Cabecera con control de reinicio de laboratorio (F5) */
+.cabecera {
+  background: var(--superficie);
+  border-bottom: 1px solid var(--borde);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.marca {
+  margin: 0;
+  font-weight: 700;
+  color: var(--primario);
+  font-size: 1.125rem;
+}
+
+.sede {
+  margin: 0;
+  color: var(--texto-sec);
+  font-size: 0.875rem;
+}
+
+.boton-lab {
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--borde);
+  background: var(--primario-suave);
+  color: var(--primario);
+  cursor: pointer;
+}
+
+.boton-lab:hover {
+  border-color: var(--primario);
+}
+
+.contenido {
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  margin: 0.5rem 0 1rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem;
+}
+
+/* Sección de catálogo rápido y buscador (Tarea de refuerzo T3) */
+.catalogo {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.catalogo__ayuda {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  color: var(--texto-sec);
+}
+
+.controles-busqueda {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.campo-busqueda label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.campo-busqueda input {
+  width: 100%;
+  font: inherit;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--borde);
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip-filtro {
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--borde);
+  background: var(--fondo);
+  color: var(--texto);
+  cursor: pointer;
+}
+
+.chip-filtro.activo {
+  background: var(--primario);
+  color: #fff;
+  border-color: var(--primario);
+}
+
+.grid-catalogo {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.item-catalogo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--borde);
+  border-radius: 0.5rem;
+  background: var(--fondo);
+}
+
+.item-catalogo__info strong {
+  display: block;
+  font-size: 0.9375rem;
+}
+
+.item-catalogo__info small {
+  color: var(--texto-sec);
+  font-size: 0.8125rem;
+}
+
+.item-catalogo__acciones {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-cat {
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--primario);
+  background: var(--superficie);
+  color: var(--primario);
+  cursor: pointer;
+}
+
+.btn-cat--agregar {
+  background: var(--primario);
+  color: #fff;
+}
+
+/* Mobile-First: una columna por defecto (tarjeta arriba, estado debajo) */
+.disposicion {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.tarjeta,
+.resumen {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  min-width: 0;
+}
+
+.productos {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0 0 0.75rem;
+  border-bottom: 1px solid var(--borde);
+}
+
+.productos li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.3rem 0;
+}
+
+.productos small {
+  display: block;
+  color: var(--texto-sec);
+  font-size: 0.8125rem;
+}
+
+/* Jerarquía: total, retiro y pago antes del botón */
+.datos {
+  margin: 0 0 1rem;
+}
+
+.datos div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.datos dt {
+  font-weight: 700;
+  min-width: 4.5rem;
+}
+
+.datos dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+#total {
+  font-weight: 700;
+  color: var(--primario);
+}
+
+/* Visibilidad del estado del pedido */
+.resumen p {
+  margin: 0 0 1rem;
+  overflow-wrap: anywhere;
+}
+
+.resumen[data-estado="confirmado"] {
+  background: var(--exito-suave);
+  border: 2px solid var(--exito);
+}
+
+.resumen[data-estado="cancelado"] {
+  background: var(--aviso-suave);
+  border: 2px solid var(--aviso);
+}
+
+.resumen[data-estado="error"] {
+  background: var(--error-suave);
+  border: 2px solid var(--error);
+}
+
+/* Botones nativos con objetivo táctil de al menos 44 px */
+.boton {
+  font: inherit;
+  font-weight: 600;
+  min-height: 2.75rem;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 0.6rem;
+  border: 2px solid var(--primario);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.boton--primario {
+  background: var(--primario);
+  color: #fff;
+}
+
+.boton--primario:hover:not(:disabled) {
+  background: var(--primario-presionado);
+}
+
+.boton--secundario {
+  background: var(--superficie);
+  color: var(--primario);
+}
+
+.boton:disabled {
+  background: var(--deshab);
+  border-color: var(--deshab);
+  color: var(--texto-deshab);
+  cursor: not-allowed;
+}
+
+.boton:focus-visible,
+.btn-cat:focus-visible,
+.chip-filtro:focus-visible,
+.boton-lab:focus-visible,
+.campo-busqueda input:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 2px;
+}
+
+/* Punto de corte: a 48rem (768 px) se activan dos columnas */
+@media (min-width: 48rem) {
+  .contenido {
+    padding: 2rem 1.5rem;
+  }
+
+  .controles-busqueda {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+
+  .grid-catalogo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .disposicion {
+    grid-template-columns: 3fr 2fr;
+    align-items: start;
+    gap: 1.5rem;
+  }
+
+  .boton {
+    width: auto;
+    min-width: 12rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boton {
+    transition: none;
+  }
+}
