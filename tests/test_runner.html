@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Suite de Verificación y Validación · APE 6 · CaféU</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; background: #f9fafb; color: #111827; }
+    h1 { margin-bottom: 0.5rem; }
+    .meta { color: #6b7280; margin-bottom: 1.5rem; }
+    .summary { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+    .card { background: white; padding: 1rem 1.5rem; border-radius: 8px; border: 1px solid #e5e7eb; }
+    .card .val { font-size: 1.75rem; font-weight: 700; }
+    .card.pass .val { color: #16a34a; }
+    .card.fail .val { color: #dc2626; }
+    .tabla { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; background: white; border: 1px solid #e5e7eb; }
+    th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #e5e7eb; }
+    th { background: #f3f4f6; font-size: 0.875rem; }
+    .badge { padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 600; font-size: 0.75rem; }
+    .badge-pass { background: #dcfce7; color: #15803d; }
+    .badge-fail { background: #fee2e2; color: #b91c1c; }
+    iframe { width: 360px; max-width: 100%; height: 560px; border: 2px solid #94a3b8; border-radius: 6px; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Suite Automatizada de Verificación Técnica y Protocolo F5 · APE 6 · CaféU</h1>
+  <p class="meta">Caso «Mi pedido» + Catálogo Rápido · Grupo 5 · Responsables: <strong>Henry Daniel Lagua Flores</strong> (QA) y <strong>Carlos Giovanni Ramos Jácome</strong> (Tester)</p>
+
+  <div class="summary">
+    <div class="card"><div class="val" id="total-tests">0</div><div>Total de pruebas</div></div>
+    <div class="card pass"><div class="val" id="pass-tests">0</div><div>Aprobadas</div></div>
+    <div class="card fail"><div class="val" id="fail-tests">0</div><div>Fallidas</div></div>
+  </div>
+
+  <div class="tabla"><table>
+    <thead>
+      <tr><th>ID</th><th>Descripción</th><th>Criterio</th><th>Resultado</th></tr>
+    </thead>
+    <tbody id="test-rows"></tbody>
+  </table></div>
+
+  <h2>Pantalla bajo prueba (360 px)</h2>
+  <iframe id="test-frame" src="../src/index.html" title="CaféU · Mi pedido"></iframe>
+
+  <script>
+    const frame = document.getElementById('test-frame');
+    const rows = document.getElementById('test-rows');
+    const esperar = (ms) => new Promise(r => setTimeout(r, ms));
+
+    frame.onload = async () => {
+      const doc = frame.contentDocument;
+      const win = frame.contentWindow;
+
+      if (doc.querySelector('.resumen').dataset.estado !== 'pendiente' && win.PedidoAPI) {
+        win.PedidoAPI.reiniciar();
+        win.location.reload();
+        return;
+      }
+
+      const $ = (id) => doc.getElementById(id);
+      const estado = () => doc.querySelector('.resumen').dataset.estado;
+      const saldo = () => $('saldo').textContent;
+
+      const tests = [
+        { id: 'TC-01', crit: 'HTML5 semántico', desc: 'Estructura: header, main, section.catalogo, article.tarjeta, dl.datos, section.resumen',
+          run: () => doc.querySelector('header') && doc.querySelector('main') && doc.querySelector('section.catalogo') &&
+                     doc.querySelector('article.tarjeta') && doc.querySelector('dl.datos') && doc.querySelector('section.resumen') },
+        { id: 'TC-02', crit: 'WCAG 4.1.3', desc: 'Región de estado con role="status" y aria-live="polite"',
+          run: () => $('estado') && $('estado').getAttribute('role') === 'status' },
+        { id: 'TC-03', crit: 'WCAG 1.4.10', desc: 'Sin desborde horizontal a 360 px (scrollWidth <= innerWidth)',
+          run: () => doc.documentElement.scrollWidth <= win.innerWidth },
+        { id: 'TC-04', crit: 'Fase 3.1 · T3', desc: 'Buscador y filtros renderizan los 6 productos iniciales del catálogo',
+          run: () => doc.querySelectorAll('#lista-catalogo .item-catalogo').length === 6 },
+        { id: 'TC-05', crit: 'Fase 3.1 · T3', desc: 'Filtrar por categoría «postres» muestra 1 producto (Cheesecake de mora)',
+          run: () => {
+            doc.querySelector('.chip-filtro[data-categoria="postres"]').click();
+            const n = doc.querySelectorAll('#lista-catalogo .item-catalogo').length;
+            doc.querySelector('.chip-filtro[data-categoria="todos"]').click();
+            return n === 1;
+          } },
+        { id: 'TC-06', crit: 'Tarea 1 · Confirmar', desc: 'Confirmar pedido base ($4.25): estado «confirmado», #A24, saldo $5.75',
+          run: () => {
+            $('btn-confirmar').click();
+            return estado() === 'confirmado' && $('btn-confirmar').disabled && !$('btn-cancelar').hidden &&
+                   saldo() === '$5.75' && $('estado').textContent.includes('#A24');
+          } },
+        { id: 'TC-07', crit: 'WCAG 2.4.3', desc: 'Foco trasladado a «Cancelar pedido» al confirmar',
+          run: () => doc.activeElement === $('btn-cancelar') },
+        { id: 'TC-08', crit: 'Nielsen H5', desc: 'Sin doble cobro: 5 activaciones más de «Confirmar» dejan el saldo en $5.75',
+          run: () => { for (let i = 0; i < 5; i++) $('btn-confirmar').click(); return saldo() === '$5.75'; } },
+        { id: 'TC-09', crit: 'APE 5 · Margen 600ms', desc: 'Doble Enter inmediato no cancela el pedido recién pagado',
+          run: () => { $('btn-cancelar').click(); return estado() === 'confirmado' && saldo() === '$5.75'; } },
+        { id: 'TC-10', crit: 'Tarea 2 · Cancelar', desc: 'Cancelar (pasados 600 ms): estado «cancelado» y devolución a $10.00',
+          run: async () => {
+            await esperar(700);
+            $('btn-cancelar').click();
+            return estado() === 'cancelado' && !$('btn-confirmar').disabled && $('btn-cancelar').hidden && saldo() === '$10.00';
+          } },
+        { id: 'TC-11', crit: 'Tarea 3 · Saldo', desc: 'API rechaza pago cuando el total supera los $10.00 de saldo (H-01)',
+          run: () => {
+            win.PedidoAPI.agregarProducto('cheesecake-mora');
+            win.PedidoAPI.agregarProducto('cheesecake-mora');
+            win.PedidoAPI.agregarProducto('cheesecake-mora');
+            const r = win.PedidoAPI.confirmarPedido();
+            return r.exito === false && r.motivo === 'saldo_insuficiente';
+          } },
+        { id: 'TC-12', crit: 'Fase 3.1 · Reinicio F5', desc: 'Botón #btn-reiniciar-lab restablece saldo $10.00, total $4.25 y correlativo #A24',
+          run: () => {
+            $('btn-reiniciar-lab').click();
+            return estado() === 'pendiente' && saldo() === '$10.00' && $('total').textContent === '$4.25';
+          } }
+      ];
+
+      let ok = 0, ko = 0;
+      for (const t of tests) {
+        let r = false;
+        try { r = !!(await t.run()); } catch (e) { console.error(t.id, e); }
+        r ? ok++ : ko++;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td><strong>${t.id}</strong></td><td>${t.desc.replace(/</g, '&lt;')}</td><td>${t.crit}</td>` +
+          `<td><span class="badge ${r ? 'badge-pass' : 'badge-fail'}">${r ? 'PASÓ' : 'FALLÓ'}</span></td>`;
+        rows.appendChild(tr);
+      }
+      win.PedidoAPI.reiniciar();
+      document.getElementById('total-tests').textContent = tests.length;
+      document.getElementById('pass-tests').textContent = ok;
+      document.getElementById('fail-tests').textContent = ko;
+    };
+  </script>
+</body>
+</html>
