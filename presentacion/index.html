@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APE 6 · Evaluación y Validación · CaféU · Grupo 5</title>
+<style>
+  :root {
+    --texto: #1F1A17; --suave: #524944; --fondo: #FAF7F3; --sup: #fff;
+    --primario: #6B3F24; --primario-suave: #F3E7DC; --ok: #2E7D4F; --mal: #B3261E; --aviso: #8A4B00; --foco: #1F1A17; --borde: #E3DAD2;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--fondo); color: var(--texto); font: 1rem/1.5 "Inter", "Segoe UI", system-ui, Roboto, sans-serif; }
+  .barra { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; justify-content: space-between;
+           padding: .5rem 1rem; background: var(--sup); border-bottom: 1px solid var(--borde); }
+  .barra p { margin: 0; font-weight: 700; font-size: .9rem; letter-spacing: .04em; color: var(--primario); }
+  .controles { display: flex; gap: .5rem; align-items: center; }
+  button { font: inherit; font-weight: 600; min-height: 2.5rem; min-width: 2.5rem; padding: .25rem .85rem;
+           border: 2px solid var(--primario); border-radius: .6rem; background: var(--sup); color: var(--primario); cursor: pointer; }
+  button:focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; }
+  main { max-width: 66rem; margin: 0 auto; padding: 1rem; }
+  section.diapo { display: none; background: var(--sup); border: 1px solid var(--borde); border-radius: .75rem; padding: 1.25rem; }
+  section.diapo.activa { display: block; }
+  .meta { color: var(--suave); font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin: 0 0 .25rem; }
+  h1 { font-size: clamp(1.35rem, 3.8vw, 2.1rem); line-height: 1.2; margin: 0 0 1rem; }
+  h2 { font-size: clamp(1.2rem, 3.2vw, 1.75rem); line-height: 1.2; margin: 0 0 .85rem; }
+  ul { padding-left: 1.2rem; margin: 0 0 1rem; } li { margin-bottom: .35rem; }
+  code { background: var(--primario-suave); padding: .05rem .3rem; border-radius: .25rem; font-size: .9em; }
+  .dos { display: grid; gap: 1rem; }
+  .tabla { overflow-x: auto; margin-bottom: .75rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+  th, td { border: 1px solid var(--borde); padding: .4rem .5rem; text-align: left; }
+  th { background: var(--primario-suave); }
+  .ok { color: var(--ok); font-weight: 700; }
+  .mal { color: var(--mal); font-weight: 700; }
+  .warn { color: var(--aviso); font-weight: 700; }
+  .cita { border-left: 4px solid var(--primario); padding: .5rem .9rem; background: var(--primario-suave); margin: 0 0 1rem; }
+  .orador { margin-top: 1rem; font-size: .85rem; color: var(--suave); border-top: 1px solid var(--borde); padding-top: .5rem; }
+  .notas { display: none; margin-top: .75rem; padding: .75rem; background: #fff8e6; border: 1px solid #e0c27a; border-radius: .4rem; font-size: .88rem; }
+  body.con-notas .notas { display: block; }
+  @media (min-width: 48rem) {
+    .dos { grid-template-columns: 1fr 1fr; align-items: start; }
+    section.diapo { padding: 1.75rem; }
+  }
+  @media print {
+    .barra { display: none; } section.diapo { display: block; page-break-after: always; border: 0; }
+  }
+</style>
+</head>
+<body>
+<header class="barra">
+  <p>CaféU · UTA · FISEI · IHC 5A · Grupo 5 · APE 6 (Evaluación y Validación)</p>
+  <div class="controles">
+    <button type="button" id="ant" aria-label="Diapositiva anterior">◀</button>
+    <span id="contador" aria-live="polite">1 / 10</span>
+    <button type="button" id="sig" aria-label="Diapositiva siguiente">▶</button>
+    <button type="button" id="btn-notas" aria-pressed="false">Notas (N)</button>
+  </div>
+</header>
+
+<main id="diapos">
+
+<section class="diapo activa" aria-labelledby="d1">
+  <p class="meta">APE 6 · Pregunta Central del Laboratorio (Boehm, 1984)</p>
+  <h1 id="d1">¿Una interfaz que funciona técnicamente puede ser una mala interfaz?</h1>
+  <p class="cita"><strong>Tesis demostrada con evidencia:</strong> <strong>Sí.</strong> En el APE 5, CaféU aprobó el 100 % de la <em>verificación técnica</em> (0 px de desborde en 4 viewports y 10/10 tests automatizados). Sin embargo, al aplicar la <em>validación formativa</em> en el APE 6 (Heurísticas de Nielsen + Think-Aloud con usuarios), emergieron <strong>8 problemas de usabilidad</strong> (1 crítico y 3 mayores) que degradaron la eficacia en la tarea de refuerzo al <strong>66.7 %</strong>.</p>
+  <ul>
+    <li><strong>Verificación (Boehm, 1984):</strong> <em>«¿Estamos construyendo el producto correctamente?»</em> (HTML5 válido, CSS adaptable, API sin doble cobro).</li>
+    <li><strong>Validación (Boehm, 1984):</strong> <em>«¿Estamos construyendo el producto correcto para el usuario real?»</em> (comprensión de estados vacíos, prevención proactiva de saldo insuficiente y control sin pérdida de turno).</li>
+  </ul>
+  <p class="orador">Integrantes Grupo 5: Alison Cobos (@Itsuna18) · Melany Cevallos (@SalyC15) · Carlos Ramos (@carlitosgiovanniramos) · Henry Lagua (@Hlagua)</p>
+</section>
+
+<section class="diapo" aria-labelledby="d2">
+  <p class="meta">Fase 3 · Actividad 1</p>
+  <h2 id="d2">Ajuste Post-Pilotaje y Protocolo de Reinicio (F5)</h2>
+  <ul>
+    <li><strong>Brecha detectada en Fase 2 (Pilotaje):</strong> Solo se había probado el camino feliz de pagar (<code>T1</code>) y cancelar (<code>T2</code>) sobre un pedido fijo de $4.25, omitiendo <strong>buscadores, filtros y prevención de errores de límite de saldo ($10.00)</strong>.</li>
+    <li><strong>Tarea de Refuerzo incorporada (T3 · Meta ≤ 35 s):</strong> Buscar un producto en el catálogo rápido, filtrar por categoría, superar el límite de $10.00 de la tarjeta universitaria y ajustar el pedido para lograr pagar.</li>
+    <li><strong>Protocolo de Reinicio de Estado (F5 / <code>Alt+R</code>):</strong> Entre sesiones se ejecuta <code>PedidoAPI.reiniciar()</code> (botón <em>Reiniciar sesión (F5)</em>), limpiando <code>sessionStorage</code> y garantizando saldo <strong>$10.00</strong>, pedido base <strong>$4.25</strong>, turno <strong>#A24</strong> y filtros limpios.</li>
+  </ul>
+  <p class="orador">Oradora: Alison Marcela Cobos Taco (@Itsuna18)</p>
+</section>
+
+<section class="diapo" aria-labelledby="d3">
+  <p class="meta">Fase 3 · Actividad 2 · Método Analítico</p>
+  <h2 id="d3">Método 1: Evaluación Heurística Independiente (Nielsen, 1994/1995)</h2>
+  <p>Los 4 integrantes inspeccionaron el prototipo por separado ponderando <strong>Frecuencia, Impacto y Persistencia</strong> en escala <strong>1 (Cosmético) a 4 (Crítico)</strong>:</p>
+  <div class="tabla"><table>
+    <thead><tr><th>Evaluador(a)</th><th>Rol</th><th>Archivo de Evidencia</th><th>Hallazgos detectados</th></tr></thead>
+    <tbody>
+      <tr><td>Alison Cobos (@Itsuna18)</td><td>Back-End</td><td><code>resultados/heuristica-alison-cobos.md</code></td><td>4 hallazgos: H-01 (Sev. 4), H-03 (Sev. 3), H-04 (Sev. 3), H-05 (Sev. 2)</td></tr>
+      <tr><td>Melany Cevallos (@SalyC15)</td><td>Front-End</td><td><code>resultados/heuristica-melany-cevallos.md</code></td><td>5 hallazgos: H-01 (Sev. 4), H-02 (Sev. 3), H-04 (Sev. 3), H-07 (Sev. 2), H-08 (Sev. 1)</td></tr>
+      <tr><td>Carlos Ramos (@carlitosgiovanniramos)</td><td>Tester</td><td><code>resultados/heuristica-carlos-ramos.md</code></td><td>5 hallazgos: H-01 (Sev. 4), H-02 (Sev. 3), H-03 (Sev. 3), H-07 (Sev. 2), H-08 (Sev. 1)</td></tr>
+      <tr><td>Henry Lagua (@Hlagua)</td><td>QA / Arquitecto</td><td><code>resultados/heuristica-henry-lagua.md</code></td><td>5 hallazgos: H-01 (Sev. 4), H-02 (Sev. 3), H-03 (Sev. 3), H-05 (Sev. 2), H-08 (Sev. 1)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="orador">Oradora: Melany Saleth Cevallos Goyes (@SalyC15)</p>
+</section>
+
+<section class="diapo" aria-labelledby="d4">
+  <p class="meta">Fase 3 · Actividad 3 · Método Empírico</p>
+  <h2 id="d4">Método 2: Prueba de Usabilidad con Usuarios (Think-Aloud + SUS)</h2>
+  <ul>
+    <li><strong>Participantes externos anonimizados:</strong> <code>P1</code>, <code>P2</code> y <code>P3</code> (estudiantes de otros grupos/semestres que no diseñaron CaféU, con consentimiento informado firmado).</li>
+    <li><strong>Roles del laboratorio:</strong> Moderadora (Melany Cevallos), Cronometrista (Carlos Ramos), Observadora Think-Aloud (Alison Cobos) y Soporte/QA de reinicio F5 (Henry Lagua).</li>
+    <li><strong>Evidencia en repositorio:</strong> <code>resultados/P1.md</code>, <code>resultados/P2.md</code> y <code>resultados/P3.md</code> con citas textuales, tiempos por tarea, errores críticos/no críticos y las 10 respuestas del cuestionario SUS.</li>
+  </ul>
+  <p class="orador">Orador: Carlos Giovanni Ramos Jácome (@carlitosgiovanniramos)</p>
+</section>
+
+<section class="diapo" aria-labelledby="d5">
+  <p class="meta">Fase 3 · Actividad 4 · ISO 9241-11:2018 y Brooke (1996)</p>
+  <h2 id="d5">Consolidación de Métricas: Eficacia, Eficiencia y Satisfacción (SUS)</h2>
+  <div class="tabla"><table>
+    <thead><tr><th>Tarea</th><th>Meta (s)</th><th>P1 (s)</th><th>P2 (s)</th><th>P3 (s)</th><th>Mediana (s)</th><th>Éxito Autónomo (%)</th><th>Err. Críticos</th><th>Err. No Críticos</th></tr></thead>
+    <tbody>
+      <tr><td><strong>T1</strong> Confirmar pedido #A24</td><td>20.0 s</td><td>16.0</td><td>14.0</td><td>18.0</td><td class="ok">16.0 s (Cumple)</td><td class="ok">100.0 % (3/3)</td><td>0</td><td>0</td></tr>
+      <tr><td><strong>T2</strong> Cancelar y verificar reembolso</td><td>15.0 s</td><td>17.0</td><td>13.0</td><td>19.0</td><td class="warn">17.0 s (+2.0 s)</td><td class="ok">100.0 % (3/3)</td><td>0</td><td>2</td></tr>
+      <tr><td><strong>T3</strong> Refuerzo: Buscador y límite $10</td><td>35.0 s</td><td>52.0</td><td>64.0*</td><td>48.0</td><td class="mal">52.0 s (+17.0 s)</td><td class="warn">66.7 % (2/3)</td><td class="mal">1</td><td class="mal">6</td></tr>
+      <tr><th>Global / Total</th><th>—</th><th>85.0</th><th>91.0</th><th>85.0</th><th>—</th><th>88.9 % (8/9)</th><th>1</th><th>8</th></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Satisfacción SUS (Brooke, 1996):</strong> P1 = <strong>80.0</strong> · P2 = <span class="mal"><strong>62.5</strong></span> · P3 = <strong>75.0</strong> → <strong>Promedio = 72.5</strong> (Mediana = 75.0) frente a la referencia de la industria de <strong>68.0</strong> (+4.5 pts global, pero P2 cae bajo 68.0 por la fricción en T3).</p>
+  <p class="orador">Orador: Carlos Giovanni Ramos Jácome (@carlitosgiovanniramos)</p>
+</section>
+
+<section class="diapo" aria-labelledby="d6">
+  <p class="meta">Fase 4 · Actividad 5</p>
+  <h2 id="d6">Matriz Consolidada de Hallazgos (H-01 a H-08)</h2>
+  <div class="tabla"><table>
+    <thead><tr><th>ID</th><th>Problema unificado</th><th>Heurística</th><th>Sev. (1–4)</th><th>Evidencia (Analítica / Empírica)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>H-01</strong></td><td>Botón «Confirmar y pagar» sigue activo cuando el total supera los $10.00 de saldo y no indica cuánto falta</td><td>H5 · H9</td><td class="mal">4 (Crítico)</td><td>4/4 evaluadores + P1, P2, P3 fallaron o dudaron en T3</td></tr>
+      <tr><td><strong>H-02</strong></td><td>El buscador deja la lista en blanco sin mensaje de «0 resultados» cuando no hay coincidencias</td><td>H1 · H6</td><td class="warn">3 (Mayor)</td><td>3/4 evaluadores + P2 («empanada») y P3 en T3</td></tr>
+      <tr><td><strong>H-03</strong></td><td>«Cancelar pedido» anula en un solo clic sin confirmar ni advertir pérdida del turno #A24 → #A25</td><td>H3 · H5</td><td class="warn">3 (Mayor)</td><td>3/4 evaluadores + P1 y P3 en T2</td></tr>
+      <tr><td><strong>H-04</strong></td><td>Falta botón individual <code>− Quitar</code> junto a cada ítem dentro de la lista «Revisa tu pedido»</td><td>H6 · H3</td><td class="warn">3 (Mayor)</td><td>2/4 evaluadores + P1 y P2 en T3</td></tr>
+      <tr><td><strong>H-05</strong></td><td>Bloqueo de 600 ms en «Cancelar pedido» sin estado visual de enfriamiento</td><td>H1</td><td>2 (Menor)</td><td>Detectado en inspección heurística (AC-04, HL-04)</td></tr>
+      <tr><td><strong>H-06</strong></td><td>Falta indicar en qué ventanilla del Edificio central se retira el #A24 y si requiere carné</td><td>H10 · H2</td><td>2 (Menor)</td><td>Verbalizado por P1 y P3 al terminar T1</td></tr>
+      <tr><td><strong>H-07</strong></td><td>Ausencia de botón rápido <code>× Limpiar</code> o atajo <code>Escape</code> en el buscador</td><td>H7</td><td>2 (Menor)</td><td>Detectado en inspección heurística (MC-04, CR-04)</td></tr>
+      <tr><td><strong>H-08</strong></td><td>Contraste y tamaño ajustado de subtítulos <code>&lt;small&gt;</code> en viewport de 320 px</td><td>H8</td><td>1 (Cosmético)</td><td>Detectado en inspección heurística (MC-05, CR-05, HL-05)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="orador">Oradora: Alison Marcela Cobos Taco (@Itsuna18)</p>
+</section>
+
+<section class="diapo" aria-labelledby="d7">
+  <p class="meta">Fase 4 · Actividad 6</p>
+  <h2 id="d7">Triangulación Metodológica (Heurística × Usuarios)</h2>
+  <div class="tabla"><table>
+    <thead><tr><th>Categoría de Triangulación</th><th>Hallazgos</th><th>Interpretación Metodológica</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Confirmado por ambos métodos</strong><br>(Heurística + Think-Aloud)</td><td><strong>H-01</strong> (Sev. 4), <strong>H-02</strong> (Sev. 3), <strong>H-03</strong> (Sev. 3), <strong>H-04</strong> (Sev. 3)</td><td>El 100 % de los problemas críticos y mayores predichos por la inspección de Nielsen se materializaron como errores o demoras reales en los participantes P1–P3.</td></tr>
+      <tr><td><strong>Solo heurística</strong><br>(Método analítico)</td><td><strong>H-05</strong> (Sev. 2), <strong>H-07</strong> (Sev. 2), <strong>H-08</strong> (Sev. 1)</td><td>La inspección experta detecta casos borde de temporización (600 ms), aceleradores para expertos (<code>Escape</code>) y detalles a 320 px que 3 usuarios novatos no verbalizan en una sesión corta.</td></tr>
+      <tr><td><strong>Solo usuarios</strong><br>(Método empírico)</td><td><strong>H-06</strong> (Sev. 2)</td><td>Los diseñadores sufrían «sesgo de familiaridad» (ya conocían el contexto físico del APE 4); solo los usuarios reales preguntaron en qué ventanilla presentar el código <code>#A24</code>.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="orador">Orador: Henry Daniel Lagua Flores (@Hlagua)</p>
+</section>
+
+<section class="diapo" aria-labelledby="d8">
+  <p class="meta">Fase 4 · Actividad 7</p>
+  <h2 id="d8">Criterios Técnicos de Mejora (C-01 a C-08)</h2>
+  <div class="tabla"><table>
+    <thead><tr><th>Criterio</th><th>Hallazgo</th><th>Componente afectado</th><th>Cambio técnico verificable</th><th>Estándar de respaldo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>C-01</strong></td><td>H-01</td><td><code>src/interaccion.js</code> · <code>#btn-confirmar</code></td><td>Deshabilitar <code>#btn-confirmar</code> en vivo si <code>total &gt; saldo</code> y anunciar monto faltante exacto (<code>$X.XX</code>) en <code>#estado</code>.</td><td>Nielsen H5, H9 · WCAG 2.1 SC 3.3.1, 4.1.3 · ISO 9241-11</td></tr>
+      <tr><td><strong>C-02</strong></td><td>H-02</td><td><code>src/interaccion.js</code> · <code>#lista-catalogo</code></td><td>Renderizar estado vacío con <code>role="status"</code> («0 resultados para...») y botón «Ver todo el menú».</td><td>Nielsen H1, H6 · WCAG 2.1 SC 4.1.3</td></tr>
+      <tr><td><strong>C-03</strong></td><td>H-03</td><td><code>src/interaccion.js</code> · <code>#btn-cancelar</code></td><td>Solicitar confirmación de dos pasos advirtiendo que se perderá el turno <code>#A24</code> antes de anular.</td><td>Nielsen H3, H5 · WCAG 2.1 SC 3.3.4</td></tr>
+      <tr><td><strong>C-04</strong></td><td>H-04</td><td><code>src/index.html</code> · <code>#lista-pedido</code></td><td>Añadir botón <code>− Quitar</code> (≥ 44×44 px) en cada línea de producto dentro de «Revisa tu pedido».</td><td>Nielsen H6, H3 · WCAG 2.1 SC 2.5.5</td></tr>
+      <tr><td><strong>C-05..C-08</strong></td><td>H-05..H-08</td><td><code>src/estilos.css</code> · <code>src/index.html</code></td><td>Estado visual de 600 ms (C-05), nota de Ventanilla Rápida (C-06), botón <code>× Limpiar</code>/<code>Esc</code> (C-07) y contraste 7.1:1 en <code>&lt;small&gt;</code> (C-08).</td><td>Nielsen H1, H2, H7, H8, H10 · WCAG 2.1 SC 1.4.3</td></tr>
+    </tbody>
+  </table></div>
+  <p class="orador">Oradora: Melany Saleth Cevallos Goyes (@SalyC15)</p>
+</section>
+
+<section class="diapo" aria-labelledby="d9">
+  <p class="meta">Fase 4 · Actividad 8 · GitHub Issues</p>
+  <h2 id="d9">Backlog Priorizado (P1 a P4) y Trabajo Colaborativo en GitHub</h2>
+  <div class="tabla"><table>
+    <thead><tr><th>Prioridad</th><th>Issue en GitHub</th><th>Hallazgos / Criterios</th><th>Severidad</th><th>Responsable</th></tr></thead>
+    <tbody>
+      <tr><td><span class="mal">P1 (Inmediata)</span></td><td><a href="https://github.com/Hlagua/APE6_IHC/issues/1">Issue #1</a></td><td>H-01 → C-01 (Validación proactiva de saldo insuficiente y monto faltante)</td><td>4 (Crítico)</td><td>@Itsuna18 · @SalyC15</td></tr>
+      <tr><td><span class="warn">P2 (Alta)</span></td><td><a href="https://github.com/Hlagua/APE6_IHC/issues/2">Issue #2</a></td><td>H-02, H-07 → C-02, C-07 (Estado vacío en buscador y botón limpiar filtro)</td><td>3 (Mayor)</td><td>@SalyC15</td></tr>
+      <tr><td><span class="warn">P3 (Media-Alta)</span></td><td><a href="https://github.com/Hlagua/APE6_IHC/issues/3">Issue #3</a></td><td>H-03, H-04 → C-03, C-04 (Confirmación al cancelar #A24 y quitar ítem en lista)</td><td>3 (Mayor)</td><td>@Itsuna18 · @carlitosgiovanniramos</td></tr>
+      <tr><td>P4 (Refinamiento)</td><td><a href="https://github.com/Hlagua/APE6_IHC/issues/4">Issue #4</a></td><td>H-05, H-06, H-08 → C-05, C-06, C-08 (Feedback 600ms, guía de retiro y contraste)</td><td>2–1 (Menor/Cosm.)</td><td>@Hlagua</td></tr>
+    </tbody>
+  </table></div>
+  <p>Trazabilidad completa en <code>github.com/Hlagua/APE6_IHC</code>: 4 ramas por rol, commits individuales con <code>--author</code> y Pull Requests #9 a #12 integrados en <code>main</code>.</p>
+  <p class="orador">Orador: Henry Daniel Lagua Flores (@Hlagua)</p>
+</section>
+
+<section class="diapo" aria-labelledby="d10">
+  <p class="meta">Cierre · Respuesta Basada en Evidencia</p>
+  <h2 id="d10">Conclusiones: Verificación vs. Validación (Boehm, 1984)</h2>
+  <ul>
+    <li><strong>Respuesta a la pregunta del laboratorio:</strong> Una interfaz que funciona técnicamente (0 px de desborde, 100 % de tests unitarios aprobados y API sin doble cobro) <strong>sí puede ser una mala interfaz</strong> cuando falla en la comunicación de estado y prevención de errores ante tareas reales de búsqueda y presupuesto limitado.</li>
+    <li><strong>Evidencia cuantitativa:</strong> Mientras en el flujo básico (T1) la eficacia fue del <strong>100 %</strong> (mediana 16.0 s ≤ meta 20.0 s), en la tarea de refuerzo post-pilotaje (T3) la eficacia cayó a <strong>66.7 %</strong>, el tiempo subió a una mediana de <strong>52.0 s</strong> (+48.6 % sobre la meta de 35.0 s) y el SUS de P2 descendió a <strong>62.5</strong> (&lt; 68.0).</li>
+    <li><strong>Complementariedad metodológica:</strong> La triangulación demostró que las heurísticas de Nielsen y las pruebas Think-Aloud no compiten, sino que se necesitan mutuamente: las heurísticas capturaron defectos de temporización y micro-interacción (<code>H-05</code>, <code>H-07</code>, <code>H-08</code>), mientras que los usuarios revelaron vacíos del contexto físico (<code>H-06</code>) y confirmaron el impacto real de <code>H-01</code> a <code>H-04</code>.</li>
+  </ul>
+  <p class="orador">Oradores: Los cuatro integrantes del Grupo 5</p>
+</section>
+
+</main>
+
+<script>
+  const diapos = [...document.querySelectorAll('.diapo')];
+  const contador = document.getElementById('contador');
+  const btnNotas = document.getElementById('btn-notas');
+  let i = 0;
+  function ir(n) {
+    i = Math.max(0, Math.min(diapos.length - 1, n));
+    diapos.forEach((d, k) => d.classList.toggle('activa', k === i));
+    contador.textContent = (i + 1) + ' / ' + diapos.length;
+    try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
+  }
+  document.getElementById('ant').addEventListener('click', () => ir(i - 1));
+  document.getElementById('sig').addEventListener('click', () => ir(i + 1));
+  btnNotas.addEventListener('click', () => {
+    const on = document.body.classList.toggle('con-notas');
+    btnNotas.setAttribute('aria-pressed', String(on));
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.closest && e.target.closest('button')) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') e.preventDefault(); else return;
+    }
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') ir(i + 1);
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') ir(i - 1);
+    else if (e.key === 'n' || e.key === 'N') btnNotas.click();
+  });
+  const h = parseInt(location.hash.slice(1), 10);
+  ir(Number.isFinite(h) ? h - 1 : 0);
+</script>
+</body>
+</html>

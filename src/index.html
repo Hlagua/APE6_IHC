@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CaféU · Mi pedido (Evaluación Formativa APE 6)</title>
+  <link rel="stylesheet" href="estilos.css">
+  <script src="api.js" defer></script>
+  <script src="interaccion.js" defer></script>
+</head>
+<body>
+  <header class="cabecera">
+    <div class="cabecera__info">
+      <p class="marca">CaféU</p>
+      <p class="sede">Retiro en Edificio central · Cafetería Universitaria UTA</p>
+    </div>
+    <button type="button" id="btn-reiniciar-lab" class="boton-lab" title="Protocolo de reinicio entre sesiones (F5 / Alt+R)">
+      Reiniciar sesión (F5)
+    </button>
+  </header>
+
+  <main class="contenido">
+    <h1>Mi pedido</h1>
+
+    <!-- Módulo post-pilotaje (Tarea de Refuerzo T3): Buscador y filtro de menú rápido -->
+    <section class="catalogo" aria-labelledby="titulo-catalogo">
+      <div class="catalogo__cabecera">
+        <h2 id="titulo-catalogo">Agregar del menú rápido</h2>
+        <p class="catalogo__ayuda">Filtra o busca productos adicionales antes de confirmar tu compra.</p>
+      </div>
+
+      <div class="controles-busqueda">
+        <div class="campo-busqueda">
+          <label for="buscar-producto">Buscar producto</label>
+          <input type="search" id="buscar-producto" placeholder="Ej. Capuchino, jugo, postre..." autocomplete="off">
+        </div>
+        <div class="filtros" role="group" aria-label="Filtrar por categoría">
+          <button type="button" class="chip-filtro activo" data-categoria="todos" aria-pressed="true">Todos</button>
+          <button type="button" class="chip-filtro" data-categoria="bebidas" aria-pressed="false">Bebidas</button>
+          <button type="button" class="chip-filtro" data-categoria="snacks" aria-pressed="false">Snacks</button>
+          <button type="button" class="chip-filtro" data-categoria="postres" aria-pressed="false">Postres</button>
+        </div>
+      </div>
+
+      <ul id="lista-catalogo" class="grid-catalogo" aria-live="polite"></ul>
+    </section>
+
+    <div class="disposicion">
+      <!-- Componente 1: tarjeta del pedido (dato clave + acción principal) -->
+      <article class="tarjeta" aria-labelledby="titulo-pedido">
+        <h2 id="titulo-pedido">Revisa tu pedido</h2>
+        <ul id="lista-pedido" class="productos">
+          <li><span>1 × Café Americano <small>12 oz · caliente</small></span> <span>$1.50</span></li>
+          <li><span>1 × Sánduche <small>jamón y queso</small></span> <span>$2.75</span></li>
+        </ul>
+        <dl class="datos">
+          <div>
+            <dt>Total</dt>
+            <dd id="total">$4.25</dd>
+          </div>
+          <div>
+            <dt>Retiro</dt>
+            <dd>Edificio central · listo en unos 10 minutos</dd>
+          </div>
+          <div>
+            <dt>Pago</dt>
+            <dd>Tarjeta universitaria · saldo <span id="saldo">$10.00</span></dd>
+          </div>
+        </dl>
+        <button type="button" id="btn-confirmar" class="boton boton--primario">
+          Confirmar y pagar · $4.25
+        </button>
+      </article>
+
+      <!-- Componente 2: estado del pedido (resultado visible + cancelación) -->
+      <section class="resumen" aria-labelledby="titulo-estado" data-estado="pendiente">
+        <h2 id="titulo-estado">Estado de tu pedido</h2>
+        <p id="estado" role="status" aria-live="polite">Aún no confirmas tu pedido. No se ha cobrado nada.</p>
+        <button type="button" id="btn-cancelar" class="boton boton--secundario" hidden>
+          Cancelar pedido
+        </button>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
