@@ -32,7 +32,9 @@ La **eficiencia** relaciona los recursos temporales invertidos con los resultado
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
 | **T1:** Confirmar pedido `#A24` | **20.0 s** | 16.0 | 14.0 | 18.0 | 16.0 s | **16.0 s** | **−4.0 s (−20.0 %)** | ✅ **Cumple con holgura** |
 | **T2:** Cancelar y verificar reembolso | **15.0 s** | 17.0 | 13.0 | 19.0 | 16.3 s | **17.0 s** | **+2.0 s (+13.3 %)** | ⚠️ **Desviación leve** (duda por falta de confirmación `H-03` y cambio `#A24` → `#A25`) |
-| **T3 (Refuerzo):** Buscador y límite `$10.00` | **35.0 s** | 52.0 | 64.0 | 48.0 | 54.7 s | **52.0 s** | **+17.0 s (+48.6 %)** | ❌ **No cumple la meta** (demora por lista vacía `H-02`, clic fallido `H-01` y retorno al catálogo `H-04`) |
+| **T3 (Refuerzo):** Buscador y límite `$10.00` | **35.0 s** | 52.0 | 64.0* | 48.0 | 54.7 s | **52.0 s** | **+17.0 s (+48.6 %)** | ❌ **No cumple la meta** (demora por lista vacía `H-02`, clic fallido `H-01` y retorno al catálogo `H-04`) |
+
+> **\* Nota sobre `P2` en `T3` (`64.0* s`):** El participante `P2` no completó la tarea `T3` de forma autónoma; el tiempo de `64.0 s` incluye el bloqueo ante el buscador en blanco (`H-02`) y el error de saldo (`H-01`), tras lo cual requirió 1 pista de la moderadora para localizar cómo restar unidades en el catálogo.
 
 ---
 

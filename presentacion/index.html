@@ -122,6 +122,7 @@
       <tr><th>Global / Total</th><th>—</th><th>85.0</th><th>91.0</th><th>85.0</th><th>—</th><th>88.9 % (8/9)</th><th>1</th><th>8</th></tr>
     </tbody>
   </table></div>
+  <p><small><strong>* Nota (64.0* s en P2):</strong> P2 no completó T3 de forma autónoma; requirió 1 pista tras el estado vacío (H-02) y el error de saldo (H-01).</small></p>
   <p><strong>Satisfacción SUS (Brooke, 1996):</strong> P1 = <strong>80.0</strong> · P2 = <span class="mal"><strong>62.5</strong></span> · P3 = <strong>75.0</strong> → <strong>Promedio = 72.5</strong> (Mediana = 75.0) frente a la referencia de la industria de <strong>68.0</strong> (+4.5 pts global, pero P2 cae bajo 68.0 por la fricción en T3).</p>
   <p class="orador">Orador: Carlos Giovanni Ramos Jácome (@carlitosgiovanniramos)</p>
 </section>
@@ -169,7 +170,7 @@
       <tr><td><strong>C-02</strong></td><td>H-02</td><td><code>src/interaccion.js</code> · <code>#lista-catalogo</code></td><td>Renderizar estado vacío con <code>role="status"</code> («0 resultados para...») y botón «Ver todo el menú».</td><td>Nielsen H1, H6 · WCAG 2.1 SC 4.1.3</td></tr>
       <tr><td><strong>C-03</strong></td><td>H-03</td><td><code>src/interaccion.js</code> · <code>#btn-cancelar</code></td><td>Solicitar confirmación de dos pasos advirtiendo que se perderá el turno <code>#A24</code> antes de anular.</td><td>Nielsen H3, H5 · WCAG 2.1 SC 3.3.4</td></tr>
       <tr><td><strong>C-04</strong></td><td>H-04</td><td><code>src/index.html</code> · <code>#lista-pedido</code></td><td>Añadir botón <code>− Quitar</code> (≥ 44×44 px) en cada línea de producto dentro de «Revisa tu pedido».</td><td>Nielsen H6, H3 · WCAG 2.1 SC 2.5.5</td></tr>
-      <tr><td><strong>C-05..C-08</strong></td><td>H-05..H-08</td><td><code>src/estilos.css</code> · <code>src/index.html</code></td><td>Estado visual de 600 ms (C-05), nota de Ventanilla Rápida (C-06), botón <code>× Limpiar</code>/<code>Esc</code> (C-07) y contraste 7.1:1 en <code>&lt;small&gt;</code> (C-08).</td><td>Nielsen H1, H2, H7, H8, H10 · WCAG 2.1 SC 1.4.3</td></tr>
+      <tr><td><strong>C-05..C-08</strong></td><td>H-05..H-08</td><td><code>src/estilos.css</code> · <code>src/index.html</code></td><td>Estado visual de 600 ms (C-05), nota de Ventanilla Rápida (C-06), botón <code>× Limpiar</code>/<code>Esc</code> (C-07) y contraste 8.77:1 / 8.21:1 en <code>&lt;small&gt;</code> (C-08).</td><td>Nielsen H1, H2, H7, H8, H10 · WCAG 2.1 SC 1.4.3, 1.4.6</td></tr>
     </tbody>
   </table></div>
   <p class="orador">Oradora: Melany Saleth Cevallos Goyes (@SalyC15)</p>
@@ -182,9 +183,9 @@
     <thead><tr><th>Prioridad</th><th>Issue en GitHub</th><th>Hallazgos / Criterios</th><th>Severidad</th><th>Responsable</th></tr></thead>
     <tbody>
       <tr><td><span class="mal">P1 (Inmediata)</span></td><td><a href="https://github.com/Hlagua/APE6_IHC/issues/1">Issue #1</a></td><td>H-01 → C-01 (Validación proactiva de saldo insuficiente y monto faltante)</td><td>4 (Crítico)</td><td>@Itsuna18 · @SalyC15</td></tr>
-      <tr><td><span class="warn">P2 (Alta)</span></td><td><a href="https://github.com/Hlagua/APE6_IHC/issues/2">Issue #2</a></td><td>H-02, H-07 → C-02, C-07 (Estado vacío en buscador y botón limpiar filtro)</td><td>3 (Mayor)</td><td>@SalyC15</td></tr>
-      <tr><td><span class="warn">P3 (Media-Alta)</span></td><td><a href="https://github.com/Hlagua/APE6_IHC/issues/3">Issue #3</a></td><td>H-03, H-04 → C-03, C-04 (Confirmación al cancelar #A24 y quitar ítem en lista)</td><td>3 (Mayor)</td><td>@Itsuna18 · @carlitosgiovanniramos</td></tr>
-      <tr><td>P4 (Refinamiento)</td><td><a href="https://github.com/Hlagua/APE6_IHC/issues/4">Issue #4</a></td><td>H-05, H-06, H-08 → C-05, C-06, C-08 (Feedback 600ms, guía de retiro y contraste)</td><td>2–1 (Menor/Cosm.)</td><td>@Hlagua</td></tr>
+      <tr><td><span class="warn">P2 (Alta)</span></td><td><a href="https://github.com/Hlagua/APE6_IHC/issues/2">Issue #2</a></td><td>H-02, H-04 → C-02, C-04 (Estado vacío en buscador y botón quitar ítem en lista)</td><td>3 (Mayor)</td><td>@SalyC15 · @Itsuna18</td></tr>
+      <tr><td><span class="warn">P3 (Media-Alta)</span></td><td><a href="https://github.com/Hlagua/APE6_IHC/issues/3">Issue #3</a></td><td>H-03 → C-03 (Confirmación de dos pasos al cancelar #A24 advirtiendo pérdida de turno)</td><td>3 (Mayor)</td><td>@Itsuna18 · @carlitosgiovanniramos</td></tr>
+      <tr><td>P4 (Refinamiento)</td><td><a href="https://github.com/Hlagua/APE6_IHC/issues/4">Issue #4</a></td><td>H-05..H-08 → C-05..C-08 (Feedback 600ms, guía de retiro, limpiar filtro y contraste 8.77:1)</td><td>2–1 (Menor/Cosm.)</td><td>@Hlagua</td></tr>
     </tbody>
   </table></div>
   <p>Trazabilidad completa en <code>github.com/Hlagua/APE6_IHC</code>: 4 ramas por rol, commits individuales con <code>--author</code> y Pull Requests #9 a #12 integrados en <code>main</code>.</p>

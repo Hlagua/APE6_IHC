@@ -82,12 +82,12 @@ if __name__ == '__main__':
 
         capturar('../../src/index.html', 360, 920, 'T3-hallazgo-H01-saldo.png',
                  'Hallazgo H-01 (Sev. 4 Crítico) · Saldo Insuficiente',
-                 'Total $11.75 > $10.00 · Botón activo antes del clic',
+                 'Total $11.75 > $10.00 · Error tras clic sin monto faltante',
                  '#8a1c1c',
                  "d.getElementById('btn-reiniciar-lab').click();"
-                 "const b = d.querySelector('button[data-accion=\"agregar\"][data-id=\"cheesecake-mora\"]');"
-                 "b.click(); b.click(); b.click();"
-                 "d.getElementById('btn-confirmar').click();")
+                 "for(let k=0;k<3;k++){d.querySelector('button[data-accion=\"agregar\"][data-id=\"cheesecake-mora\"]').click();}"
+                 "d.getElementById('btn-confirmar').click();"
+                 "d.querySelector('.tarjeta').scrollIntoView();")
 
         capturar('../../src/index.html', 360, 760, 'T3-hallazgo-H02-buscador.png',
                  'Hallazgo H-02 (Sev. 3 Mayor) · Buscador Vacío',

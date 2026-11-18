@@ -59,6 +59,8 @@ Detalle completo en [`resultados/metricas_iso_sus.md`](resultados/metricas_iso_s
 | **T3 (Refuerzo):** Buscador, filtro y límite de saldo (`$10.00`) | **35.0 s** | 52.0 | 64.0* | 48.0 | **52.0 s** | **+17.0 s** (❌ No cumple) | **66.7 % (2/3)** | **1** | **6** |
 | **Global / Consolidado** | — | 85.0 | 91.0 | 85.0 | — | — | **88.9 % (8/9)** | **1** | **8** |
 
+> **\* Nota sobre `P2` en `T3` (`64.0* s`):** El participante `P2` no logró completar la tarea `T3` de forma autónoma; tras quedar detenido ante el buscador en blanco (`H-02`) y el rechazo por saldo insuficiente (`H-01`), requirió 1 pista de la moderadora para identificar el botón `−` en el catálogo.
+
 ### 4.2 Tabla de Satisfacción — Cuestionario SUS (Brooke, 1996)
 
 | Participante | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 | R10 | Suma Base | Puntaje SUS (0–100) | Referencia Industria | Diferencia vs. 68.0 | Valoración |
@@ -84,7 +86,7 @@ Detalle completo en [`resultados/matriz_hallazgos_triangulacion.md`](resultados/
 | **H-05** | El bloqueo de 600 ms en «Cancelar pedido» no muestra retroalimentación visual de enfriamiento. | **H1** Visibilidad del estado | 2 | 2 | 2 | **2 (Menor)** | Detectado en inspección heurística (`AC-04`, `HL-04`). | Aplicar clase `.boton--enfriamiento` durante los 600 ms posteriores al pago. |
 | **H-06** | No se indica en qué ventanilla del Edificio central presentar el código `#A24` ni si requiere carné universitario. | **H10** Ayuda · **H2** Mundo real | 2 | 2 | 2 | **2 (Menor)** | Verbalizado por `P1` y `P3` al finalizar `T1`. | Especificar `Ventanilla Rápida (PB, Edificio central) con código #A24 y carné UTA`. |
 | **H-07** | Falta botón rápido `× Limpiar` o soporte de tecla `Escape` en el buscador y filtros. | **H7** Flexibilidad y eficiencia | 2 | 2 | 2 | **2 (Menor)** | Detectado en inspección heurística (`MC-04`, `CR-04`). | Añadir botón `× Limpiar` y manejador de tecla `Escape` en `#buscar-producto`. |
-| **H-08** | Tamaño compacto (`0.8125rem`) y contraste ajustado de subtítulos `<small>` en viewport de 320 px. | **H8** Diseño estético y minimalista | 2 | 1 | 1 | **1 (Cosmético)** | Detectado en inspección heurística (`MC-05`, `CR-05`, `HL-05`). | Subir `<small>` a `0.875rem` y oscurecer `--texto-sec` a `#524944` (contraste `7.1:1`). |
+| **H-08** | Tamaño compacto (`0.8125rem`) y contraste ajustado de subtítulos `<small>` en viewport de 320 px. | **H8** Diseño estético y minimalista | 2 | 1 | 1 | **1 (Cosmético)** | Detectado en inspección heurística (`MC-05`, `CR-05`, `HL-05`). | Subir `<small>` a `0.875rem` y oscurecer `--texto-sec` a `#524944` (contraste `8.77:1` sobre `#FFFFFF` y `8.21:1` sobre `#FAF7F3`). |
 
 ---
 
@@ -92,9 +94,9 @@ Detalle completo en [`resultados/matriz_hallazgos_triangulacion.md`](resultados/
 
 | Categoría de Cruce | Hallazgos | Total (%) | Síntesis Analítico-Empírica |
 | :--- | :--- | :---: | :--- |
-| **Confirmado por ambos métodos**<br>*(Heurística + Usuarios)* | `H-01` (Sev. 4), `H-02` (Sev. 3), `H-03` (Sev. 3), `H-04` (Sev. 3) | **4 (50.0 %)** | Los 4 defectos más graves predichos por las heurísticas de Nielsen causaron bloqueos, clics fallidos y exceso de tiempo en las sesiones reales con `P1–P3`. |
-| **Solo heurística**<br>*(Método Analítico)* | `H-05` (Sev. 2), `H-07` (Sev. 2), `H-08` (Sev. 1) | **3 (37.5 %)** | Captura condiciones de borde temporales (`600 ms`), atajos para expertos (`Escape`) y detalles en 320 px que 3 usuarios novatos no verbalizan. |
-| **Solo usuarios**<br>*(Método Empírico)* | `H-06` (Sev. 2) | **1 (12.5 %)** | Supera el «sesgo de familiaridad» de los diseñadores al evidenciar dudas sobre el retiro físico en el mostrador de la cafetería. |
+| **Confirmado por ambos métodos**<br>*(Heurística + Usuarios)* | `H-01` (Sev. 4 · P1), `H-02` (Sev. 3 · P2), `H-03` (Sev. 3 · P3), `H-04` (Sev. 3 · P2) | **4 (50.0 %)** | Los 4 defectos más graves predichos por las heurísticas de Nielsen causaron bloqueos, clics fallidos y exceso de tiempo en las sesiones reales con `P1–P3`. |
+| **Solo heurística**<br>*(Método Analítico)* | `H-05` (Sev. 2 · P4), `H-07` (Sev. 2 · P4), `H-08` (Sev. 1 · P4) | **3 (37.5 %)** | Captura condiciones de borde temporales (`600 ms`), atajos para expertos (`Escape`) y detalles en 320 px que 3 usuarios novatos no verbalizan. |
+| **Solo usuarios**<br>*(Método Empírico)* | `H-06` (Sev. 2 · P4) | **1 (12.5 %)** | Supera el «sesgo de familiaridad» de los diseñadores al evidenciar dudas sobre el retiro físico en el mostrador de la cafetería. |
 
 ---
 
@@ -109,18 +111,20 @@ Detalle completo en [`resultados/matriz_hallazgos_triangulacion.md`](resultados/
 | **C-05** | `H-05` | `src/interaccion.js` · `src/estilos.css` | Aplicar clase `.boton--enfriamiento` (`opacity: 0.7`) a `#btn-cancelar` durante los `600 ms` posteriores al cobro. | **Nielsen:** H1 · **WCAG 2.1:** SC 1.3.3 |
 | **C-06** | `H-06` | `src/index.html` · `#estado` | Indicar explícitamente `Ventanilla Rápida (PB, Edificio central) presentando el código #A24 y tu carné UTA`. | **Nielsen:** H10, H2 · **ISO 9241-11:** Satisfacción |
 | **C-07** | `H-07` | `src/index.html` · `.campo-busqueda` | Agregar botón `× Limpiar` junto a `#buscar-producto` y soporte para la tecla `Escape`. | **Nielsen:** H7 · **WCAG 2.1:** SC 2.1.1 |
-| **C-08** | `H-08` | `src/estilos.css` · `--texto-sec` | Cambiar `--texto-sec` a `#524944` (contraste `7.12:1` AAA) y subir `<small>` a `0.875rem` (14 px). | **Nielsen:** H8 · **WCAG 2.1:** SC 1.4.3, 1.4.6 |
+| **C-08** | `H-08` | `src/estilos.css` · `--texto-sec` | Cambiar `--texto-sec` a `#524944` (contraste `8.77:1` sobre `#FFFFFF` y `8.21:1` sobre `#FAF7F3`, nivel AAA) y subir `<small>` a `0.875rem` (14 px). | **Nielsen:** H8 · **WCAG 2.1:** SC 1.4.3, 1.4.6 |
 
 ---
 
 ## 8. Fase 4.8: Backlog Priorizado en GitHub Issues y Conclusiones
 
+La prioridad de implementación (`P1` a `P4`) está estrictamente ordenada por severidad consensuada (`Sev. 4 → P1`, `Sev. 3 → P2 y P3`, `Sev. 2 y 1 → P4`):
+
 | Prioridad | GitHub Issue Vinculado | Hallazgos | Criterios Técnicos | Severidad | Resumen de la Mejora Trazable | Responsables |
 | :---: | :---: | :---: | :---: | :---: | :--- | :--- |
 | **P1 (Crítica)** | [**Issue #1**](https://github.com/Hlagua/APE6_IHC/issues/1) | `H-01` | `C-01` | **4 (Crítico)** | Validación proactiva de saldo insuficiente (`> $10.00`), bloqueo preventivo de `#btn-confirmar` y cálculo del monto faltante. | `@Itsuna18` · `@SalyC15` |
-| **P2 (Alta)** | [**Issue #2**](https://github.com/Hlagua/APE6_IHC/issues/2) | `H-02`, `H-07` | `C-02`, `C-07` | **3 (Mayor)** | Estado vacío informativo en `#lista-catalogo` cuando hay 0 resultados y botón/atajo `Escape` para limpiar filtros. | `@SalyC15` |
-| **P3 (Media-Alta)** | [**Issue #3**](https://github.com/Hlagua/APE6_IHC/issues/3) | `H-03`, `H-04` | `C-03`, `C-04` | **3 (Mayor)** | Confirmación de seguridad antes de cancelar el turno `#A24` y botón individual `− Quitar` en cada línea de `#lista-pedido`. | `@Itsuna18` · `@carlitosgiovanniramos` |
-| **P4 (Refinamiento)** | [**Issue #4**](https://github.com/Hlagua/APE6_IHC/issues/4) | `H-05`, `H-06`, `H-08` | `C-05`, `C-06`, `C-08` | **2–1 (Menor / Cosmético)** | Estado visual durante el margen de 600 ms, indicación de Ventanilla Rápida para retiro y mejora de contraste AAA en `<small>`. | `@Hlagua` |
+| **P2 (Alta)** | [**Issue #2**](https://github.com/Hlagua/APE6_IHC/issues/2) | `H-02`, `H-04` | `C-02`, `C-04` | **3 (Mayor)** | Estado vacío informativo en `#lista-catalogo` cuando hay 0 resultados y botón individual `− Quitar` en cada línea de `#lista-pedido`. | `@SalyC15` · `@Itsuna18` |
+| **P3 (Media-Alta)** | [**Issue #3**](https://github.com/Hlagua/APE6_IHC/issues/3) | `H-03` | `C-03` | **3 (Mayor)** | Confirmación de dos pasos antes de cancelar el pedido `#A24` advirtiendo la pérdida del turno actual. | `@Itsuna18` · `@carlitosgiovanniramos` |
+| **P4 (Refinamiento)** | [**Issue #4**](https://github.com/Hlagua/APE6_IHC/issues/4) | `H-05`, `H-06`, `H-07`, `H-08` | `C-05`, `C-06`, `C-07`, `C-08` | **2–1 (Menor / Cosmético)** | Estado visual durante el margen de 600 ms, indicación de Ventanilla Rápida para retiro, botón/atajo `Escape` para limpiar filtro y contraste AAA (`8.77:1`) en `<small>`. | `@Hlagua` |
 
 - **Documento completo de Conclusiones:** [`docs/conclusiones.md`](docs/conclusiones.md)
 - **Informe Oficial UTA (DOCX y PDF):** [`06_documento/APE6_Informe_Final.pdf`](06_documento/APE6_Informe_Final.pdf)

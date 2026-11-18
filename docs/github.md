@@ -18,11 +18,11 @@ Cada integrante trabajó en su rama dedicada según su rol técnico, utilizando 
 
 ## 2. Backlog de Mejoras Priorizado en GitHub Issues (`P1` a `P4`)
 
-Los hallazgos consolidados en la Fase 4 (`H-01` a `H-08`) y sus criterios técnicos verificables (`C-01` a `C-08`) están registrados como **GitHub Issues abiertos y etiquetados** en [`https://github.com/Hlagua/APE6_IHC/issues`](https://github.com/Hlagua/APE6_IHC/issues):
+La asignación de prioridades (`P1` a `P4`) guarda correspondencia estricta con la severidad consensuada (`Sev. 4 → P1`, `Sev. 3 → P2 y P3`, `Sev. 2 y 1 → P4`) en [`https://github.com/Hlagua/APE6_IHC/issues`](https://github.com/Hlagua/APE6_IHC/issues):
 
-| Prioridad | GitHub Issue | Etiqueta | Hallazgos Cubiertos | Criterios Técnicos | Severidad Máxima | Título del Issue en GitHub | Responsables Asignados |
+| Prioridad | GitHub Issue | Etiqueta | Hallazgos Cubiertos | Criterios Técnicos | Severidad | Título del Issue en GitHub | Responsables Asignados |
 | :---: | :---: | :---: | :---: | :---: | :---: | :--- | :--- |
 | **P1** | [**Issue #1**](https://github.com/Hlagua/APE6_IHC/issues/1) | `P1-critico`<br>`backlog-mejora` | `H-01` | `C-01` | **4 (Crítico)** | `[P1 - Crítico \| Sev. 4] H-01 / C-01: Validación proactiva de saldo insuficiente y desglose de monto faltante` | `@Itsuna18` · `@SalyC15` |
-| **P2** | [**Issue #2**](https://github.com/Hlagua/APE6_IHC/issues/2) | `P2-mayor`<br>`backlog-mejora` | `H-02`, `H-07` | `C-02`, `C-07` | **3 (Mayor)** | `[P2 - Mayor \| Sev. 3] H-02, H-07 / C-02, C-07: Estado vacío informativo en buscador y botón para limpiar filtros` | `@SalyC15` |
-| **P3** | [**Issue #3**](https://github.com/Hlagua/APE6_IHC/issues/3) | `P3-mayor`<br>`backlog-mejora` | `H-03`, `H-04` | `C-03`, `C-04` | **3 (Mayor)** | `[P3 - Mayor \| Sev. 3] H-03, H-04 / C-03, C-04: Confirmación al cancelar pedido (#A24) y botón individual para quitar ítems` | `@Itsuna18` · `@carlitosgiovanniramos` |
-| **P4** | [**Issue #4**](https://github.com/Hlagua/APE6_IHC/issues/4) | `P4-menor`<br>`backlog-mejora` | `H-05`, `H-06`, `H-08` | `C-05`, `C-06`, `C-08` | **2–1 (Menor / Cosmético)** | `[P4 - Menor/Cosmético \| Sev. 2-1] H-05, H-06, H-08 / C-05, C-06, C-08: Feedback de margen 600ms, guía de retiro en mostrador y contraste` | `@Hlagua` |
+| **P2** | [**Issue #2**](https://github.com/Hlagua/APE6_IHC/issues/2) | `P2-mayor`<br>`backlog-mejora` | `H-02`, `H-04` | `C-02`, `C-04` | **3 (Mayor)** | `[P2 - Mayor \| Sev. 3] H-02, H-04 / C-02, C-04: Estado vacío informativo en buscador y botón individual para quitar ítems` | `@SalyC15` · `@Itsuna18` |
+| **P3** | [**Issue #3**](https://github.com/Hlagua/APE6_IHC/issues/3) | `P3-mayor`<br>`backlog-mejora` | `H-03` | `C-03` | **3 (Mayor)** | `[P3 - Mayor \| Sev. 3] H-03 / C-03: Confirmación de dos pasos al cancelar pedido (#A24) advirtiendo pérdida de turno` | `@Itsuna18` · `@carlitosgiovanniramos` |
+| **P4** | [**Issue #4**](https://github.com/Hlagua/APE6_IHC/issues/4) | `P4-menor`<br>`backlog-mejora` | `H-05`, `H-06`, `H-07`, `H-08` | `C-05`, `C-06`, `C-07`, `C-08` | **2–1 (Menor / Cosmético)** | `[P4 - Menor/Cosmético \| Sev. 2-1] H-05..H-08 / C-05..C-08: Feedback 600ms, guía de retiro, limpiar filtro y contraste AAA` | `@Hlagua` |
